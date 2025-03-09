@@ -35,9 +35,9 @@
     
                 {{-- Show settings only if user role is admin --}}
                 @if(auth()->user()->role == 'admin')
-                    <a href='admin/dashboard' class="block px-4 py-2 text-sm text-gray-700">Admin Dashboard</a>
+                    <a href='/admin/dashboard' class="block px-4 py-2 text-sm text-gray-700">Admin Dashboard</a>
                 @elseif(auth()->user()->role == 'editor')
-                <a href='editor/dashboard' class="block px-4 py-2 text-sm text-gray-700">Editor Dashboard</a>
+                <a href='/editor/dashboard' class="block px-4 py-2 text-sm text-gray-700">Editor Dashboard</a>
                 @endif
     
                 <form method="POST" action="{{ route('logout') }}">
