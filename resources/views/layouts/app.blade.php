@@ -12,11 +12,12 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/js/app.js'])
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body class="font-sans antialiased">
+        @include('components.navbar')
         <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
 
             <!-- Page Heading -->
             @isset($header)
@@ -32,5 +33,23 @@
                 {{ $slot }}
             </main>
         </div>
+
+        <script>
+            document.getElementById('mobile-menu-button').addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
+                document.getElementById('menu-open').classList.toggle('hidden');
+                document.getElementById('menu-close').classList.toggle('hidden');
+            });
+    
+            document.getElementById('profile-button')?.addEventListener('click', function() {
+                document.getElementById('profile-menu').classList.toggle('hidden');
+            });
+    
+            window.addEventListener('click', function(e) {
+                if (!document.getElementById('profile-button')?.contains(e.target) && !document.getElementById('profile-menu')?.contains(e.target)) {
+                    document.getElementById('profile-menu')?.classList.add('hidden');
+                }
+            });
+        </script>
     </body>
 </html>

@@ -20,6 +20,10 @@ class PasswordController extends Controller
             'password' => ['required', Password::defaults(), 'confirmed'],
         ]);
 
+        if(! $request->user()->hasVerifiedEmail()){
+            return redirect()->route('verification.notice'); 
+        }
+
         $request->user()->update([
             'password' => Hash::make($validated['password']),
         ]);
